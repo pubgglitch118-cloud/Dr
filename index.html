@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Ruhm Badr - عيادات طب الأسنان التجميلية</title>
+  <meta name="description" content="حجز موعد في عيادة Dr. Ruhm Badr لطب الأسنان التجميلي - ابتسامة أكثر إشراقاً تبدأ من هنا">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app-compat.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-database-compat.js">
+  </script>
+  <script src="firebase/config.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wrap bg-pattern">
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+      <div class="nav-bar-inner">
+        <div class="logo" style="display:flex;align-items:center;gap:8px;">
+          <img src="logo.png"
+               alt="Dr. Ruhm Badr" style="height:32px;width:auto;max-width:120px;">
+          Dr. <span class="gold">Ruhm Badr</span>
+        </div>
+        <nav>
+          <a href="#services">خدماتنا</a>
+          <a href="#booking">احجز موعد</a>
+          <a href="status.html">متابعة</a>
+        </nav>
+      </div>
+    </nav>
+
+    <div class="page-content" style="padding-top:88px;">
+      <!-- Tenvora Credit Strip -->
+      <div style="text-align:center;padding:8px 16px;font-size:0.78rem;color:var(--text-muted);background:linear-gradient(90deg,transparent,rgba(201,168,76,0.08),transparent);border-bottom:1px solid rgba(201,168,76,0.15);letter-spacing:0.3px;">
+        تعاون بين <strong style="color:var(--gold);">Tenvora</strong> وعيادة <strong style="color:var(--gold);">Dr. Ruhm Badr</strong>
+      </div>
+
+      <!-- Header -->
+      <header class="site-header">
+        <div style="margin-bottom:16px;">
+          <img src="logo.png"
+               alt="Dr. Ruhm Badr" style="height:80px;width:auto;" class="float-element">
+        </div>
+        <div class="badge">✦ Dental Aesthetics Clinic</div>
+        <h1>Dr. <span class="gold">Ruhm Badr</span></h1>
+        <p class="subtitle">عيادة Dr. Ruhm Badr المتخصصة في طب الأسنان التجميلي — نمنحك الثقة بابتسامة مشرقة</p>
+        <div style="display:flex;justify-content:center;margin-top:14px;">
+          <a href="tel:+201007610339" class="phone-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            01007610339
+          </a>
+        </div>
+        <div class="divider"></div>
+      </header>
+
+      <!-- Services Section -->
+      <section id="services" style="margin-bottom:48px;animation:fade-up 0.8s ease-out 0.15s both;">
+        <h2 class="section-title">خدماتنا</h2>
+        <p class="section-subtitle">اختر الخدمة التي تناسبك — أسعار تنافسية وجودة عالية</p>
+
+        <div class="services-grid">
+          <div class="service-card" data-service="تبيض الأسنان" data-price="500" onclick="selectService(this)">
+            <div class="check">✓</div>
+            <div class="icon">🦷</div>
+            <h3>تبيض الأسنان</h3>
+            <p>للحصول على ابتسامة أكثر إشراقاً ونضارة</p>
+            <span class="service-price" id="price-تبيض الأسنان">500</span>
+          </div>
+
+          <div class="service-card" data-service="تنظيف وتلميع" data-price="300" onclick="selectService(this)">
+            <div class="check">✓</div>
+            <div class="icon">✨</div>
+            <h3>تنظيف وتلميع</h3>
+            <p>إزالة الجير والبقع — أسنان صحية ونظيفة</p>
+            <span class="service-price" id="price-تنظيف وتلميع">300</span>
+          </div>
+
+          <div class="service-card" data-service="فينير أو لومينير" data-price="800" onclick="selectService(this)">
+            <div class="check">✓</div>
+            <div class="icon">💎</div>
+            <h3>فينير أو لومينير</h3>
+            <p>لتصحيح شكل ولون الأسنان بشكل فوري</p>
+            <span class="service-price" id="price-فينير أو لومينير">800</span>
+          </div>
+
+          <div class="service-card" data-service="حشوات تجميلية" data-price="400" onclick="selectService(this)">
+            <div class="check">✓</div>
+            <div class="icon">🛠️</div>
+            <h3>حشوات تجميلية</h3>
+            <p>تجميل وإصلاح الأسنان المتضررة</p>
+            <span class="service-price" id="price-حشوات تجميلية">400</span>
+          </div>
+
+          <div class="service-card" data-service="كشف شامل" data-price="200" onclick="selectService(this)">
+            <div class="check">✓</div>
+            <div class="icon">🔬</div>
+            <h3>كشف شامل</h3>
+            <p>فحص دقيق وخطة علاج مخصصة لك</p>
+            <span class="service-price" id="price-كشف شامل">200</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section style="margin-bottom:48px;animation:fade-up 0.8s ease-out 0.25s both;">
+        <h2 class="section-title" style="text-align:center;">لماذا تختار <span class="gold">Dr. Ruhm Badr</span>؟</h2>
+        <p class="section-subtitle" style="text-align:center;">نقدم أفضل معايير الجودة والراحة لمرضانا</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔬</div>
+            <h3>أحدث الأجهزة</h3>
+            <p>نستخدم أحدث التقنيات والأجهزة الطبية في مجال طب الأسنان التجميلي</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👨‍⚕️</div>
+            <h3>فريق متخصص</h3>
+            <p>كادر طبي متخصص وذو خبرة عالية في جميع مجالات تجميل الأسنان</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧬</div>
+            <h3>تعقيم عالي الجودة</h3>
+            <p>نطبق أعلى معايير التعقيم والسلامة لضمان صحتكم</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💆</div>
+            <h3>راحة واهتمام</h3>
+            <p>نوفر بيئة مريحة واهتمام شخصي بكل مريض من لحظة وصوله</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking Form -->
+      <section id="booking" style="animation:fade-up 0.8s ease-out 0.3s both;">
+        <div id="bookingFormView">
+          <div class="glass-card-premium form-card">
+            <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:4px;">احجز موعدك الآن</h2>
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">املأ البيانات وسيتم التواصل معك لتأكيد الموعد</p>
+
+            <div id="workInfo" style="margin-bottom:12px;padding:14px 16px;background:var(--bg);border-radius:var(--radius-sm);border:1px solid var(--border-light);">
+              <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">جاري تحميل معلومات أيام العمل...</div>
+            </div>
+            <button onclick="loadWorkInfo();loadServicePrices();showToast('✅ تم تحديث البيانات من الخادم')" style="background:none;border:none;color:var(--gold);font-size:0.78rem;cursor:pointer;font-family:inherit;margin-bottom:16px;padding:0;">🔄 تحديث البيانات من الخادم</button>
+
+            <form id="bookingForm">
+              <div class="form-group">
+                <label for="patientName">الاسم الكامل</label>
+                <input type="text" id="patientName" class="form-input" required placeholder="أدخل اسمك" autocomplete="name">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">رقم الهاتف</label>
+                <input type="tel" id="phone" class="form-input" required placeholder="أدخل رقم هاتفك" autocomplete="tel" dir="ltr">
+              </div>
+
+              <input type="hidden" id="selectedService" value="">
+
+              <div id="formError" class="msg-error"></div>
+
+              <button type="submit" class="btn btn-primary btn-full gold-glow" style="font-size:1.05rem;">
+                احجز موعدك الآن
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Success View -->
+        <div id="successView" class="success-view" style="display:none;">
+          <div class="glass-card-premium" style="padding:48px 40px;max-width:500px;margin:0 auto;">
+            <div class="success-icon gold-glow">✓</div>
+            <p style="color:var(--text-secondary);font-size:0.95rem;">تم حجز موعدك بنجاح</p>
+            <div class="success-number gold-text-glow" id="bookingNumber">#—</div>
+            <p class="success-label">احتفظ برقم الحجز لمتابعة حالته</p>
+            <div id="successDate" style="margin:16px 0;padding:14px 16px;background:var(--bg);border-radius:var(--radius-sm);border:1px solid var(--border-light);font-size:0.9rem;color:var(--text-secondary);"></div>
+            <button onclick="copyBookingNumber()" class="btn btn-gold" style="margin-bottom:12px;font-size:0.85rem;">📋 نسخ رقم الحجز</button>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+              <a href="status.html" class="btn btn-gold" style="font-size:0.85rem;">متابعة حالة الحجز</a>
+              <a href="/" class="btn btn-outline" style="font-size:0.85rem;">حجز جديد</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;">
+            <span class="gold" style="font-size:1.1rem;">✦</span>
+            <span>Dr. Ruhm Badr Dental Aesthetics Clinic</span>
+            <span style="color:var(--border);">|</span>
+          <a href="tel:+201007610339" class="footer-phone">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            01007610339
+          </a>
+        </div>
+      </footer>
+    </div>
+
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js?v=12"></script>
+</body>
+</html>
