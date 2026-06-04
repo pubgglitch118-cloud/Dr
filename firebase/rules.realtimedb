@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "bookings": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["created_at", "preferred_date", "booking_number", "phone"]
+    },
+    "settings": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}
